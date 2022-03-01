@@ -11,11 +11,11 @@ def strfdelta(tdelta, fmt):
     d["minutes"], d["seconds"] = divmod(rem, 60)
     return fmt.format(**d)
 
-# EDIT HERE variable addresses -> enter your public node addresses here
-addresses = ["public_node_address_x","public_node_address_y","public_node_address_z"]
+# EDIT HERE variable addresses -> enter your public node addresses here (as many as you have, extend with comma)
+addresses = ["0xd79883741BeB75Fed0640de8ad5F10F6f29624D3"]
 
 # EDIT HERE variable datetime -> mining start date (year, month, day, hour, minute). Check first mining reward code in https://streamr-dashboard.vercel.app/node
-mining_start_datetime = datetime(2022, 2, 23, 0, 0)
+mining_start_datetime = datetime(2022, 2, 25, 9, 30)
 
 # optional: EDIT HERE variable script_frequency -> speed with which the script reruns (3600 -> script runs once per hour)
 script_frequency = 3600
@@ -26,8 +26,8 @@ script_frequency = 3600
 # initalization of basic variables
 pricevalue_url = "https://min-api.cryptocompare.com/data/price?fsym=DATA&tsyms=USD"
 rewardendpoint_url = "https://brubeck1.streamr.network:3013/datarewards/"
-accumulated_data = 0;
-data_per_node = [];
+accumulated_data = 0
+data_per_node = []
 mining_time = datetime.now() - mining_start_datetime
 mining_time_formatted = strfdelta(mining_time, "{days} days {hours} hours {minutes} minutes")
 mining_days = mining_time.days
@@ -35,8 +35,8 @@ mining_hours, remainder = divmod(mining_time.seconds, 3600)
 scheduler = BlockingScheduler()
 
 def obtain_info():
-    global accumulated_data;
-    accumulated_data = 0;
+    global accumulated_data
+    accumulated_data = 0
     
 	# loops through addresses and fetches total DATA acquired per node
     for address in addresses:
